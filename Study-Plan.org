@@ -1,0 +1,65 @@
+#+TITLE: Study Plan
+
+* Table of Contents :toc:
+- [[#important-cs-topics][Important CS Topics]]
+- [[#year-1][Year 1]]
+  - [[#t1-core-iac-cloud--scripting][T1: Core IaC, Cloud, & Scripting]]
+
+* Important CS Topics
+- Operating Systems: OSTEP
+- Networking: Computer Networking: A Top Down Approach
+- Distributed Systems: Designing Data Intensive Applications
+- Database: Database Internals
+- DSA: Algorithm Design Manual
+
+* Year 1
+
+** T1: Core IaC, Cloud, & Scripting
+
+*** AWS Basics and Linux/Bash Scripting
+Resource: Adrian Cantrill AWS Course
+
+Exercises:
+- Set up AWS free tier
+- Provision EC2 via CLI
+- Create bash scripts for AWS tasks (e.g., monitor with AWS CLI)
+
+Read OSTEP chapters on /processes/ (Ch.1-4)
+
+*** Infrastructure as Code
+Resource
+- Terraform Up & Running
+- Pulumi documentation & tutorials
+
+Exercises:
+- Provision AWS VPC/EC2 with Terraform/Pulumi
+
+Language Integration: TypeScript basics ("TypeScript: The Definitive Guide" Ch.1-3)
+
+*** Ansible and Automation
+Resource: Ansible for DevOps
+
+Exercises:
+- Configure EC2 with Ansible
+- Integrate Terraform
+
+Add Security: Introduction to DevSecOps -- use Trivy to scan Ansible playbooks for vulnerabilities.
+
+*** Introduction to Go
+Resource: The Go Programming Language
+
+Exercises:
+- Go scripts for AWS SDK (e.g., S3 uploads)
+
+Integrate with Adrian Cantrill's course.  
+
+*** Certification Prep
+Prep for AWS Certification Exam
+
+*** Capstone Project
+- Provision multi-cloud (AWS/GCP) using Terraform/Pulumi
+- Deploy Go service on EC2 with Ansible
+- Add basic security scan
+- Publish to GitHub
+- Write a mock RFC for your project (e.g., design documentation)
+- Attempt a small open-source contribution
