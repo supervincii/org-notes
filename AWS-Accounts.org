@@ -1,0 +1,83 @@
+* Table of Contents :toc:
+- [[#aws-accounts][AWS Accounts]]
+- [[#creating-an-account][Creating an account]]
+- [[#mfa][MFA]]
+  - [[#factors][Factors]]
+- [[#iam---identity-and-access-management][IAM - Identity and Access Management]]
+  - [[#iam-policies][IAM Policies]]
+  - [[#creating-iam-identity][Creating IAM Identity]]
+  - [[#access-keys][Access Keys]]
+  - [[#creating-access-keys][Creating Access Keys]]
+
+* AWS Accounts
+- Container for identities (users) and resources (services).
+- Contains the ff:
+  - Account name
+  - *Unique* email address -> ACCOUNT ROOT USER which has full control to everything in the account
+  - Credit card -> account payment method
+- Can create new identities in the account which can be restricted -> IAM
+- Can contain the impact of errors or exploits, as well as deny outside access
+
+* Creating an account
+After creating a brand new account do the following:
+- Under ~Account~ from the dashboard, *Activate IAM Access* under ~IAM User and Role Access to Billing Information~.
+  - This allows IAM identities access to the pages of Billing and Cost Management console provided identities have permissions.
+- Activate MFA
+- Create a budget
+  - Billing dashboard (AWS Cost Management)
+  - Billing preferences and tick getting PDF invoices by email, and alert preferences for free tier alerts & CloudWatch billing alerts
+  - Under budgets, create a budget and set the amount for the budgeted amount
+
+* MFA
+
+** Factors
+Evidences that prove your identity
+
+Types of Factors
+1. Knowlege - something you know (e.g., usernames and passwords)
+2. Possession - something you have (e.g., MFA device, bank card)
+3. Inherent - something you are (e.g., fingerprint, face)
+4. Location - A location (physical) or a type of network (corporate or wifi)
+
+More factors == more security, but less convenient
+
+* IAM - Identity and Access Management
+- Allows identities to be created within an account and can be given restricted levels of access.
+- Global service
+- Comes with every AWS account
+- No cost (free)
+- Only controls local identities in the account
+
+Can create 3 types of identities
+1. Users - Humans/applications that need access to the account
+2. Group - collection of related users (e.g., dev team, HR, finance)
+3. Role - used by AWS services or for granting external access to the account
+
+Has 3 main jobs:
+- Manage identities (ID Provider)
+- Authenticate - Prove the identity
+- Authorize - Allow/Deny Access
+
+** IAM Policies
+Objects/documents used to ALLOW/DENY access to services when attached to IAM users, groups, or roles.
+
+** Creating IAM Identity
+In IAM:
+- Set a nicer account alias
+- Add users in ~Users~
+- Tick provide user access to the console
+- Create a password and untick creating a new password at next sign in
+- For permissions, attach an existing policy for a template
+- Signin as the IAM account and assign MFA
+
+** Access Keys
+Access keys are long term credentials used when accessing AWS through the CLI. They do not change regularly/rotate.
+
+An IAM user can have 0, 1, or 2 access keys and they can be /created/, /deleted/, make /inactive/, or made /active/.
+
+2 parts of an access key which are provided upon creation of an access key:
+- Access Key ID
+- Secret Access Key
+  - Cannot be seen again after creation. Can only be accessed once.
+
+** Creating Access Keys
