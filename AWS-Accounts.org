@@ -8,6 +8,7 @@
   - [[#creating-iam-identity][Creating IAM Identity]]
   - [[#access-keys][Access Keys]]
   - [[#creating-access-keys][Creating Access Keys]]
+  - [[#configuring-cli-access-with-access-keys][Configuring CLI access with access keys]]
 
 * AWS Accounts
 - Container for identities (users) and resources (services).
@@ -81,3 +82,13 @@ An IAM user can have 0, 1, or 2 access keys and they can be /created/, /deleted/
   - Cannot be seen again after creation. Can only be accessed once.
 
 ** Creating Access Keys
+Under IAM-Security Credentials:
+- Create access key
+- Create for CLI
+- Add a description tag
+- Copy the secret access key in a secure location
+
+** Configuring CLI access with access keys
+- Install AWS CLI
+- Check if AWS CLI is working with ~aws --version~
+- Configure profile: ~aws configure --profile <PROFILE-NAME>~

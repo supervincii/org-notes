@@ -1,0 +1,10 @@
+#+TITLE: Emacs TODO
+#+DESCRIPTION: List of stuff to configure for Emacs
+
+* UI & UX Improvements
+- [ ] Set font: Iosevka
+- [ ] Set theme: Choose depending on the workstation theme
+- [ ] Beautify modeline: ~doom-modeline~?
+
+* Software Development
+- [ ]

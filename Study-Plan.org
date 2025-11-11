@@ -16,8 +16,14 @@
 
 ** T1: Core IaC, Cloud, & Scripting
 
+*** Offline Reading
+- The Phoenix Project (DevOps principles)
+- Cloud Native DevOps with Kubernetes (Conceptual IaC/cloud mindsets)
+
 *** AWS Basics and Linux/Bash Scripting
-Resource: Adrian Cantrill AWS Course
+Resources:
+- Adrian Cantrill AWS Course
+- The Linux Command Line
 
 Exercises:
 - Set up AWS free tier
@@ -25,6 +31,11 @@ Exercises:
 - Create bash scripts for AWS tasks (e.g., monitor with AWS CLI)
 
 Read OSTEP chapters on /processes/ (Ch.1-4)
+
+*** Tech Fundamentals
+High level overview on technical fundamentals.
+
+Follow Adrian Cantrill's course on tech fundamentals.
 
 *** Infrastructure as Code
 Resource
@@ -43,7 +54,7 @@ Exercises:
 - Configure EC2 with Ansible
 - Integrate Terraform
 
-Add Security: Introduction to DevSecOps -- use Trivy to scan Ansible playbooks for vulnerabilities.
+Add Security: Introduction to DevSpecOps -- use Trivy to scan Ansible playbooks for vulnerabilities.
 
 *** Introduction to Go
 Resource: The Go Programming Language
@@ -59,7 +70,26 @@ Prep for AWS Certification Exam
 *** Capstone Project
 - Provision multi-cloud (AWS/GCP) using Terraform/Pulumi
 - Deploy Go service on EC2 with Ansible
+- Add Go API endpoints
 - Add basic security scan
 - Publish to GitHub
 - Write a mock RFC for your project (e.g., design documentation)
 - Attempt a small open-source contribution
+
+**** Project Rubrics
+- Functionality:
+  - Infrastructure provisions successfully
+  - Go service runs and handles basic requests (e.g., HTTP GET/POST)
+  - No errors on deployment
+- Best Practices:
+  - Uses idempotent Ansible playbooks
+  - Include IAM roles and Trivy scans
+  - Zero high-severity vulnerabilities
+- Documentation:
+  - README with setup instructions
+  - Architecture diagram (use Draw.io or any other diagram tools)
+  - Commit history should be clean
+    - Look into squashing commits when merging iteration branches
+  - Another engineer should be able to replicate in <1 hour
+- Self-Assessment:
+  - Create a self-assessment doc

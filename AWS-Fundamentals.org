@@ -1,0 +1,146 @@
+* Table of Contents :toc:
+- [[#aws-public-vs-private-services][AWS Public vs Private Services]]
+- [[#aws-global-infrastructure][AWS Global Infrastructure]]
+  - [[#aws-regions][AWS Regions]]
+  - [[#aws-edge-locations][AWS Edge Locations]]
+  - [[#service-resilience][Service Resilience]]
+- [[#virtual-private-cloud-vpc-basics][Virtual Private Cloud (VPC) Basics]]
+  - [[#default-vpc-facts][Default VPC Facts]]
+- [[#elastic-compute-cloud-ec2-basics][Elastic Compute Cloud (EC2) Basics]]
+  - [[#amazon-machine-image-ami][Amazon Machine Image (AMI)]]
+- [[#simple-storage-service-s3-basics][Simple Storage Service (S3) Basics]]
+  - [[#objects][Objects]]
+  - [[#buckets][Buckets]]
+- [[#cloudformation-cfn-basics][CloudFormation (CFN) Basics]]
+
+* AWS Public vs Private Services
+AWS services can be categorized into two main types:
+1. Public Services
+   - Services that can be accessed using public endpoints (e.g., S3)
+   - Can be accessed in the AWS public zone
+2. Private Services
+   - Can only be accessed through a VPC
+     - VPCs are AWS private zones
+
+* AWS Global Infrastructure
+
+** AWS Regions
+An area of the world that contains a full deployment of AWS infrastructure such as:
+- Compute
+- Storage
+- Databases
+- etc.
+
+Three main benefits:
+1. Geographic Separation - Isolated *Fault Domain*
+2. Geopolitical Separation - Different *governance*
+3. Location Control - Can tune architecture for *performance*
+
+Inside every region, AWS provides multiple *Availability Zones (AZ)*. For example:
+#+begin_src
+  Region: ap-southeast-2
+  AZs: ap-southeast-2a, ap-southeast-2b, ap-southeast-2c
+#+end_src
+
+AZs give isolated infrastructure inside a region with high speed low latency connections.
+
+** AWS Edge Locations
+Smaller than regions and generally only have content distribution services and some type of edge computing.
+
+Useful for fast and efficient data transfer.
+
+** Service Resilience
+- Globally Resilient
+- Region Resilient - replicate data in multiple AZs
+- AZ Resilient - prone to failure if there are any problems in that specific AZ
+
+* Virtual Private Cloud (VPC) Basics
+- A virtual network inside AWS
+- Regional service
+- Within 1 account and 1 region
+- Private and isolated by default unless decided/configured otherwise
+- Two types - Default VPC (1 per region) and Custom VPCs (can more than 1)
+  - Custom VPCs require the user to configure everything end-to-end in detail
+  - Private by default
+- Every VPC is allocated a range of IP addresses called the ~VPC CIDR~
+  - Defines the start and end range the VPC can use
+  - Custom VPCs can have multiple CIDR ranges
+  - Default VPC only gets 1 CIDR range and it always the same: ~172.31.0.0/16~
+- Each subnet of are subdivided in 1 availability zone
+  - With Default VPC, it is preconfigured to have 1 subnet in every AZ in that region
+
+** Default VPC Facts
+- One per region - can be removed & recreated
+- Default VPC CIDR is always ~172.31.0.0/16~
+- ~/20~ subnet in each AZ in the region (higher slash number == smaller network)
+- Provided with ~Internet Gateway (IGW)~, ~Security Group~, & ~NACL~
+- Subnets assign public IPv4 addresses
+
+It is best practice to not use the default VPC.
+
+* Elastic Compute Cloud (EC2) Basics
+- EC2 is an IaaS (Infrastructure as a Service) that provides access to *virtual machines* known as *instances*.
+- *Private* service by default - uses VPC networking; runs in the private AWS zone.
+- AZ resilient because an instance is launced in a specific subnet
+- There are different types of instances for different sizes and capabilities
+- On-demand billing - per second/hour (depending on the type of instance)
+- Uses different types of storage
+  1. Local on-host storage (local storage of that instance)
+  2. Elastic block storage (network storage made available to that instance)
+- An instance has an attribute called *state* with the following values:
+  - Running
+    - CPU, Memory, Storage/Disk, Networking are all being used (included for computing cost)
+  - Stopped
+    - Only Disk is being consumed (still charged for storage)
+  - Terminated
+    - Deletes the instance with its resources & allocated storage
+
+** Amazon Machine Image (AMI)
+- Image of an EC2 instance
+- Can be used to create an EC2 instance or be created from an EC2 instance
+- Contains the following:
+  - Attached permissions
+    - Can be set to public -- everyone is allowed to launch instances from that AMI
+    - Owner -- implicitly allowed to create instances from that AMI
+    - Explicit permissions -- specific AWS account allowed
+  - Root Volume
+    - Drive that boots the OS
+  - Block Device Mapping
+
+* Simple Storage Service (S3) Basics
+- Global storage platform - regional based
+- Public service; runs on AWS public zone
+- Can have unlimited data and multi-user usage of that data
+- Perfect for hosting large amounts of data
+- Economical
+- Can be accessed via different methods
+
+S3 has two main things that it delivers:
+1. Objects
+   - Data that S3 stores
+2. Buckets
+   - Containers for objects
+
+** Objects
+Made up of 2 main components:
+1. Object key (similar to a file name)
+2. Value: data/content of the object
+   - Size can be from 0 bytes - 5TB
+
+** Buckets
+- Created in a *region*.
+  - Data in that bucket does not leave that region unless configured.
+  - Failure is also contained within that region.
+- Buckets are identified by its name which needs to be *globally unique*
+- Can hold *unlimited* objects.
+- Data are stored in a flat structure.
+  - AWS shows "folders" in the UI but those are not technically folders/directories.
+  - Object names with a prefix/es are represented by AWS in the UI to be in a folder but are really stored in the same level as any other objects in the bucket.
+- 100 buckets *soft limit*
+- 1000 buckets *hard limit*
+
+Deleting buckets is a 2-step process:
+1. Empty the bucket
+2. Delete bucket
+
+* CloudFormation (CFN) Basics
