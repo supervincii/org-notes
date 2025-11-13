@@ -1,0 +1,55 @@
+#+TITLE: Operating Systems
+
+* Table of Contents :toc:
+- [[#references][References]]
+- [[#introduction][Introduction]]
+  - [[#os-components][OS Components]]
+  - [[#types-of-os-architectures][Types of OS Architectures]]
+- [[#system-architecture-and-boot-process][System Architecture and Boot Process]]
+
+* References
+- Operating Systems: Three Easy Pieces
+- [[https://prepare.sh][prepare.sh]] Operating Systems Fundamentals
+
+* Introduction
+The OS manages all the computer hardware and software resources. Think of it as a middleman between the hardware and applications.
+
+Some of the core functions of the OS are:
+1. *Resource Management*
+   - *CPU Management*: Deciding which program uses the CPU and for how long.
+   - *Memory Management*: Keeps track of what part of the RAM is being used by a program and ensures no two programs uses the same part of the RAM.
+   - *Device Management*: Controls all connected devices (e.g., peripherals) I/O.
+   - *File Management*: Organizes files and directory on the drives.
+2. *Providing a UI*: Interacting with the OS can be with either a GUI or through the CLI.
+3. *Application Management*: Running, installing, and managing applications. The OS provides a platform/environment for applications to do their thing.
+
+** OS Components
+1. *Kernel*: The core of the OS. It is the first program to load when booting up and stays running the whole time. It has direct control over the hardware and manages critical tasks like CPU scheduling and memory management.
+2. *System Calls*: Special requests by the application to the kernel to perform a task an application can't do on its own (e.g., accessing hardware). Think of it as API calls by the frontend to the backend.
+3. *User Space*: This is where regular applications and programs run. Applications in the user space don't have access to the hardware and needs to go through the kernel via system calls.
+
+** Types of OS Architectures
+1. *Monolithic Kernels*: All OS services run in the kernel space.
+   - Pros:
+     - Generally faster because different services can communicate directly with each other efficiently
+   - Cons:
+     - If a small part crashes, it affects the entire system.
+     - Harder to maintain and update due to everything being tightly coupled.
+   - Example:
+     - The traditional Linux kernel
+2. *Microkernels*: Like building LEGOs. It does the bare minimum like basic process communication, memory management, and CPU scheduling. Other services like device drivers and file systems run as separate processes in the user space.
+   - Pros:
+     - More secure & stable.
+     - If a device driver crashes, it is isolated. Not the whole OS fails.
+     - Easy to extend and modify
+   - Cons:
+     - Slower due to more communication needed between user space processes and the microkernel.
+   - Example:
+     - QNX (used in car infotainment systems)
+3. *Hybrid Kernels*: Microkernel like structure but might included added services in the kernel space for performance reasons.
+   - Pros:
+     - Stability of microkernels with performance close to monolithic kernels
+   - Cons:
+     - Complex to design and implement
+
+* System Architecture and Boot Process

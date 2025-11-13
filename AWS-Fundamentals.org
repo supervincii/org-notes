@@ -12,6 +12,12 @@
   - [[#objects][Objects]]
   - [[#buckets][Buckets]]
 - [[#cloudformation-cfn-basics][CloudFormation (CFN) Basics]]
+- [[#cloudwatch-basics][CloudWatch Basics]]
+  - [[#namespace][Namespace]]
+  - [[#metric][Metric]]
+  - [[#datapoint][Datapoint]]
+  - [[#dimension][Dimension]]
+  - [[#alarm][Alarm]]
 
 * AWS Public vs Private Services
 AWS services can be categorized into two main types:
@@ -144,3 +150,73 @@ Deleting buckets is a 2-step process:
 2. Delete bucket
 
 * CloudFormation (CFN) Basics
+- IAC within AWS
+- Can be created with either YAML or JSON
+- ~Resources~ is the only mandatory part of the template
+  - each resource in ~Resources~ are called *logical resources*
+    - Has a ~type~ that CFN uses to know what to create
+    - Have ~properties~ for configuration of the resource
+- ~Metadata~ dictates how the console UI presents the template
+- ~Parameters~ additional fields for resources (e.g., instance size, # of AZs)
+- ~Mappings~ creates lookup tables
+- ~Conditions~ creates decision making in the template
+- ~Outputs~ presents outputs on what is being created, updated, or deleted
+- When a template is given to CFN, it creates a *stack* that contains all the logical resources that the template tells it to contain
+  - For every resource in the stack, CFN makes a physical resource in the acccount
+
+#+begin_src YAML
+  AWSTemplateFormatVersion: "version date"
+
+  Description:
+    String (should be followed by the AWSTemplateFormatVersion if the format version is specified)
+
+  Metadata:
+    template of metadata
+
+  Parameters:
+    set of parameters
+
+  Mappings:
+    set of mappings
+
+  Conditions:
+    set of conditions
+
+  Transform:
+    set of transforms
+
+  Resources:
+    set of resources
+
+  Outputs:
+    set of outputs
+#+end_src
+
+* CloudWatch Basics
+- Collects and manages operational data
+- Think of CloudWatch as three main products in one:
+  1. *Metrics* (CloudWatch itself) - AWS Products, Apps, on-premises
+  2. CloudWatch *Logs* - AWS Products, Apps, on-premises
+  3. CloudWatch *Events* - AWS Services & Schedules
+
+** Namespace
+- Container for monitoring data.
+- Have a name -- can be anything as long as it stays within the rule set for namespace names.
+  - One exception -- all AWS data goes into an AWS namespace called ~AWS/<service-name>~ (e.g., ~AWS/EC2~)
+- Contain related metrics
+
+** Metric
+- Collection of related data points in a time ordered structure.
+- Not for a specific server (e.g., CPU utilization metric can be received from multiple EC2 instances)
+
+** Datapoint
+- Consists of:
+  1. Timestamp
+  2. Value
+
+** Dimension
+- Name-value pairs that separate datapoints for different things or perspective within the same metric.
+
+** Alarm
+- Created and linked to a specific metric.
+- Based on how it is configured, an action will be taken based on that metric.
