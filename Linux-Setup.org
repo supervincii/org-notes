@@ -1,0 +1,57 @@
+#+TITLE: Linux Setup
+#+DESCRIPTION: Step by step setup for all my stuff within my Linux workstation
+
+* Initial Steps
+OS: Fedora Workstation
+
+1. Upgrade packages with ~sudo dnf upgrade~.
+2. Install essential applications.
+   1. SwayWM
+   2. Emacs
+
+* Sway
+Installation:
+#+BEGIN_SRC shell
+  sudo dnf install sway
+#+END_SRC
+
+Setup:
+#+BEGIN_SRC shell
+  # Create sway config directory
+  mkdir -p ~/.config/sway
+
+  # Copy default sway config to custom config
+  cp /etc/sway/config ~/.config/sway/config
+#+END_SRC
+
+* Emacs
+Installation:
+#+BEGIN_SRC shell
+  sudo dnf emacs
+#+END_SRC
+
+Checking if Emacs is running native PGTK Emacs under Wayland:
+#+BEGIN_SRC elisp
+  ;; Evaluate these expressions
+
+  ;; To check if running native PGTK Emacs. Should return "t"
+  (featurep 'pgtk)
+
+  ;; To check if Emacs is running under Wayland. Should not be "nil"
+  (getenv "WAYLAND_DISPLAY")
+#+END_SRC
+
+* dotfiles Management
+Use stow
+
+* Packages
+- sway
+- emacs
+- xclip
+- vim
+- clang
+- clang-tools-extra (has clangd)
+- cmake
+
+* Reference
+https://grok.com/share/c2hhcmQtMw%3D%3D_a2ee5e2a-0298-4c9b-b1d0-91df0c419245

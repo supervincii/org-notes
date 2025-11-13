@@ -1,10 +1,49 @@
 #+TITLE: Emacs TODO
-#+DESCRIPTION: List of stuff to configure for Emacs
+#+DESCRIPTION: A list of todo items for configuring Emacs.
 
-* UI & UX Improvements
-- [ ] Set font: Iosevka
-- [ ] Set theme: Choose depending on the workstation theme
-- [ ] Beautify modeline: ~doom-modeline~?
+* General Emacs Settings
+These settings are built in to Emacs.
+- [ ] Setup package installation with Melpa as a package archive
+
+* UI Improvements
+- [ ] modeline
+- [ ] theme
+- [X] ~pixel-scroll-precision-mode~
+- [X] ~which-key~: discover keybindings
+- [X] ~helpful~: better help buffers
 
 * Software Development
-- [ ]
+
+** Core Tools
+- [X] Completion framework (minibuffer and in-buffer completion)
+- [ ] Project management (Projectile)
+
+** Web Development
+Web development stack with HTML, CSS, JavaScript. JS frameworks with Angular, React, and SolidJS.
+- Look into packages for web development.
+  - [ ] Emmet for faster writing of HTML
+  - [ ] LSP for HTML, CSS, and JavaScript(including frameworks)
+  - [ ] Live server for seeing live changes on a page
+  - [ ] Formatter (prettier), include formatter for HTML, CSS, and JSON files
+    - [ ] Capability for format buffer depending on the rules
+    - [ ] Good defaults (4 space indentation, does not go beyond 120 characters (formats automatically on save to new line), etc.)
+  - [ ] Linting capabilities (ESlint)
+
+** Python
+ - [ ] LSP
+ - [ ] Autocomplete
+ - [ ] Language support
+ - [ ] Linting and formatting
+ - [ ] Virtual environment (~pyvenv~)
+ - [ ] Manage multiple versions per project (~pyenv-mode~)
+
+** Git
+- [X] Install Magit
+- [ ] Learn how Magit Forge works
+
+** Bash
+- [ ] LSP
+- [ ] Autocomplete
+
+* Advance Capabilities
+This list is for learning advanced Emacs navigation, using advanced commands like macros, etc.
