@@ -2,6 +2,7 @@
 
 * Table of Contents :toc:
 - [[#important-cs-topics][Important CS Topics]]
+- [[#a-note-about-trimestral-capstone-projects][A Note About Trimestral Capstone Projects]]
 - [[#year-1][Year 1]]
   - [[#t1-core-iac-cloud--scripting][T1: Core IaC, Cloud, & Scripting]]
 
@@ -11,6 +12,9 @@
 - Distributed Systems: Designing Data Intensive Applications
 - Database: Database Internals
 - DSA: Algorithm Design Manual
+
+* A Note About Trimestral Capstone Projects
+A sample project is listed at the end of every trimester which can be used to be the capstone project of the learner. It is however encouraged that the learner thinks of his/her own capstone project that covers the core topics discussed/learned.
 
 * Year 1
 
@@ -24,72 +28,80 @@
 Resources:
 - Adrian Cantrill AWS Course
 - The Linux Command Line
+- OverTheWire Bandit
+- SadServers Scenarios
 
 Exercises:
 - Set up AWS free tier
 - Provision EC2 via CLI
 - Create bash scripts for AWS tasks (e.g., monitor with AWS CLI)
+- Build a simple bash script to monitor a local process and log output
 
 Read OSTEP chapters on /processes/ (Ch.1-4)
+
+**** Standalone Project: AWS Resource Auditor
+Script to list/inventory AWS resources (e.g., EC2 instances, S3 buckets) using AWS CLI and Bash for parsing/output.
+
+Objectives:
+- [ ] Practice CLI integration, error handling, and basic automation.
+- [ ] Deliver a runnable script with sample output.
 
 *** Tech Fundamentals
 High level overview on technical fundamentals.
 
 Follow Adrian Cantrill's course on tech fundamentals.
 
-*** Infrastructure as Code
-Resource
+**** Standalone Project: Network Diagnostic Tool
+Simple bash script to test connectivity (e.g. ping, traceroute) and output basic security checks (e.g., open ports via nmap).
+
+Objectives:
+- [ ] Apply OSI concepts
+- [ ] Deliver scripts with test scenarios
+
+*** Infrastructure as Code and TypeScript Basics
+Resources:
 - Terraform Up & Running
 - Pulumi documentation & tutorials
+- TypeScript: The Definitive Guide
 
 Exercises:
 - Provision AWS VPC/EC2 with Terraform/Pulumi
 
-Language Integration: TypeScript basics ("TypeScript: The Definitive Guide" Ch.1-3)
+**** Standalone Project: IaC Provisioner Module
+A reusable Terraform/Pulumi module for a basic VPC/subnet setup.
 
-*** Ansible and Automation
-Resource: Ansible for DevOps
+Objectives:
+- [ ] Practice declarative code
+- [ ] Deliver module with variables and outputs for reuse
+
+*** Ansible and Automation with Go Introduction
+Resource:
+- Ansible for DevOps
+- The Go Programming Language
 
 Exercises:
 - Configure EC2 with Ansible
 - Integrate Terraform
+- Add security: Introduction to DevSpecOps -- use Trivy to scan Ansible playbooks for vulnerabilities.
+- Go scripts for AWS SDK
 
-Add Security: Introduction to DevSpecOps -- use Trivy to scan Ansible playbooks for vulnerabilities.
+**** Standalone Project: Automation Playbook
+An Ansible playbook to install/configure a Go runtime on EC2 and run a basic script.
 
-*** Introduction to Go
-Resource: The Go Programming Language
-
-Exercises:
-- Go scripts for AWS SDK (e.g., S3 uploads)
-
-Integrate with Adrian Cantrill's course.  
+Objectives:
+- [ ] Idempotency and security scans
+- [ ] Deliver a playbook with test run logs
 
 *** Certification Prep
 Prep for AWS Certification Exam
 
 *** Capstone Project
-- Provision multi-cloud (AWS/GCP) using Terraform/Pulumi
-- Deploy Go service on EC2 with Ansible
-- Add Go API endpoints
-- Add basic security scan
-- Publish to GitHub
-- Write a mock RFC for your project (e.g., design documentation)
-- Attempt a small open-source contribution
 
-**** Project Rubrics
-- Functionality:
-  - Infrastructure provisions successfully
-  - Go service runs and handles basic requests (e.g., HTTP GET/POST)
-  - No errors on deployment
-- Best Practices:
-  - Uses idempotent Ansible playbooks
-  - Include IAM roles and Trivy scans
-  - Zero high-severity vulnerabilities
-- Documentation:
-  - README with setup instructions
-  - Architecture diagram (use Draw.io or any other diagram tools)
-  - Commit history should be clean
-    - Look into squashing commits when merging iteration branches
-  - Another engineer should be able to replicate in <1 hour
-- Self-Assessment:
-  - Create a self-assessment doc
+**** Sample Project: Cloud Resource Manager
+A Go CLI tool (with bash wrapper) that uses IaC (Terraform/Pulumi) to provision/audit AWS resources, incorporating Ansible for configuration and basic security scans.
+
+Goals:
+- [ ] Synthesize scripting, IaC, and automation
+- [ ] Deliver a tool that lists/provisions/tears down resources with logs and error handling
+- [ ] Test on free tier
+- [ ] Publish to GitHub with a README and demo

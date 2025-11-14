@@ -220,3 +220,52 @@ Deleting buckets is a 2-step process:
 ** Alarm
 - Created and linked to a specific metric.
 - Based on how it is configured, an action will be taken based on that metric.
+
+* Shared Responsibility Model
+
+** Customer-Vendor Responsibility Model
+Legend:
+- C: Customer
+- V: Vendor
+
+| INFRASTRUCTURE STACK | ON PREMISES | DC HOSTED | IaaS | PaaS | SaaS |
+|----------------------+-------------+-----------+------+------+------|
+| Interface            | C           | C         | C    | C    | V    |
+| Application          | C           | C         | C    | C    | V    |
+| Data                 | C           | C         | C    | C    | V    |
+| Runtime              | C           | C         | C    | V    | V    |
+| Container            | C           | C         | C    | V    | V    |
+| O/S                  | C           | C         | C    | V    | V    |
+| Hypervisor           | C           | C         | V    | V    | V    |
+| Servers              | C           | C         | V    | V    | V    |
+| Infrastructure       | C           | C         | V    | V    | V    |
+| Facilities           | C           | V         | V    | V    | V    |
+
+** AWS Shared Responsibility Model
+
+Responsibility of AWS:
+- Security *of* the cloud
+  - Hardware/AWS Global Infrastructure
+    - Regions
+    - Availability Zones
+    - Edge Locations
+  - Compute
+  - Storage
+  - Database
+  - Networking
+  - Software that assists with the services
+
+Responsibility of the customer:
+- Security *in* the cloud
+  - Client-side data encryption, integrity & authenication
+  - Server-side encryption (file system and/or data)
+  - Networking traffic protection (encryption, integrity, identity)
+  - OS, network & firewall configuration
+  - Platform, applications, identity & access management
+  - Customer data
+
+* High Availability vs Fault-Tolerance vs Disaster Recovery
+
+* Route53 Basics
+
+* DNS Record Types
